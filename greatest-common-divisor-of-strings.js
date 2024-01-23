@@ -4,9 +4,8 @@
  * @return {string}
  */
 var gcdOfStrings = function(str1, str2) {
-    let l = str1.length > str2.length ? str1 : str2
-    console.log('l:', l)
-    let sub = 0
+    let l = str1.length < str2.length ? str1 : str2
+    let sub = l.length
     let str = ""
     function isDivisor(t) {
         if(str1.includes(t) && str2.includes(t)){
@@ -15,6 +14,7 @@ var gcdOfStrings = function(str1, str2) {
                 let s2c = t.repeat(Math.floor(str2.length / t.length))
                 if((s1c === str1) && (s2c === str2)){
                     str = t
+                    return true
                 }else {
                     return false
                 }
@@ -26,14 +26,12 @@ var gcdOfStrings = function(str1, str2) {
         }
     }
     
-    if(str1.includes(l) && str2.includes(l)){
-        
-    }
-    while(sub<=l.length){
+    
+    while(sub>=0){
         if(isDivisor(l.substring(0,sub))){
-            return res
+            return str
         }else {
-            sub++
+            sub--
         }
     }
     return str
